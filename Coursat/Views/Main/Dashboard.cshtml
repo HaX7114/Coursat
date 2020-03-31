@@ -1,0 +1,64 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursat</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abhaya+Libre">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo+Da">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    <link rel="stylesheet" href="../assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="../assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="../assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="../assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/Registration-Form-with-Photo-1.css">
+    <link rel="stylesheet" href="../assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="../assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/Team-Clean.css">
+</head>
+
+<body style="background-size:cover;height:660px;background-color:#ffffff;">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top" style="color:rgb(110,131,152);background-color:#000000;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-monospace" href="#" id="COURSAT" style="font-size:25px;font-family:Actor, sans-serif;color:#6495ed;">Admin Dashboard</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1" style="background-color:#ffffff;"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#" style="color:rgba(255,255,255,0.93);font-family:Actor, sans-serif;"></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(255,255,255,0.83);"></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(255,255,255,0.84);"></a></li>
+                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="BT_IN_ADMIN" onclick="location.href='@Url.Action("AdminLogin","Main")'" style="margin:7px;">Logout</button>
+            </div>
+        </div>
+    </nav>
+    <div class="visible highlight-blue" style="width:185px;height:791px;max-height:1080px;min-height:0px;min-width:185px;max-width:185px;background-color:#1e2833;">
+        <a class="btn btn-primary" role="button" href="@Url.Action("AddAdmin","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:23px;background-color:#1e2833;">Add Admin<img class="float-left" src="../assets/img/add-user.png" style="width:26px;margin-right:-30px;"></a>
+        <img src="../assets/img/undraw_dashboard_nklg.png" style="width:600px;min-width:0px;margin-left:746px;margin-top:35px;">
+        <h1 class="float-left" id="COURSAT" style="margin-left:205px;color:#405fd1;margin-top:-494px;width:374px;font-size:44px;"><strong>Welcome </strong>! My Admin</h1>
+        <p class="text-center" style="margin-bottom:-71px;margin-top:127px;margin-left:-12px;"><br>Coursat © 2020<br><br></p>
+        <p class="text-monospace" style="margin-left:206px;margin-top:-554px;width:320px;font-size:21px;color:#1e2833;line-height:47px;font-family:Cairo, sans-serif;">Manage your Dashboard by Adding ,Editing Or Deleting Courses .</p>
+        <a class="btn btn-primary" role="button" href="@Url.Action("AddCourse","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:-235px;background-color:#1e2833;">Add Course<img class="float-left" src="../assets/img/plus (1).png" style="width:26px;margin-right:-25px;"></a>
+        <a class="btn btn-primary" role="button" href="@Url.Action("EditCourse","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:-189px;background-color:#1e2833;">Edit Course<img class="float-left" src="../assets/img/pencil.png" style="width:26px;margin-right:-31px;"></a>
+        <a class="btn btn-primary" role="button" href="@Url.Action("ShowCourses","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:-140px;background-color:rgb(30,40,51);">Show Courses<img class="float-left" src="../assets/img/menu.png" style="width:26px;margin-right:-7px;"></a>
+    </div>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bs-animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="../assets/js/Simple-Slider.js"></script>
+
+
+</body>
+</html>

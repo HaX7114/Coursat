@@ -1,0 +1,146 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursat</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abhaya+Libre">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo+Da">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    <link rel="stylesheet" href="../assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="../assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="../assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="../assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/Registration-Form-with-Photo-1.css">
+    <link rel="stylesheet" href="../assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="../assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/Team-Clean.css">
+</head>
+
+<body style="background-color:rgb(255,255,255);">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top" id="User_Nav" style="color:rgb(110,131,152);background-color:#000000;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-monospace" href="#" id="COURSAT" style="font-size:25px;font-family:Actor, sans-serif;color:#6495ed;">Coursat</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1" style="background-color:#ffffff;"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#" style="color:rgba(255,255,255,0.93);font-family:Actor, sans-serif;"><br></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="@Url.Action("User","Main")" style="color:rgba(213,213,213,0.83);">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="@Url.Action("MyCourses","Main")" style="color:rgba(213,213,213,0.83);">My Courses</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(213,213,213,0.83);"></a></li>
+                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="BT_IN_USER" onclick="location.href='@Url.Action("Index","Main")'" style="margin:7px;">Logout</button>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="margin-left:62px;margin-top:109px;width:543px;">
+        <input class="form-control-sm" type="text" placeholder="Search Courses..." id="TX_IN_USER" style="width:335px;height:37px;">
+        <button class="btn btn-primary" type="button" data-bs-hover-animate="bounce" id="BT_IN_USER" style="width:123px;height:39px;margin-left:358px;margin-top:-37px;">Search</button>
+        <ul class="list-unstyled pulse animated" id="List_IN_USER" style="width:1370px;margin-top:67px;">
+            <li class="Course_List" style="color:rgb(0,0,0);">
+                <div>
+                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
+                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
+                    <div>
+                        <ul class="course_show_list">
+                            <li>ID :</li>
+                            <li>Time :</li>
+                            <li>Day :</li>
+                            <li>Place :</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" id="BT_ENROLL" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Enroll Now</button>
+
+
+                </div>
+            </li>
+            <li class="Course_List" style="color:rgb(0,0,0);">
+                <div>
+                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
+                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
+                    <div>
+                        <ul class="course_show_list">
+                            <li>ID :</li>
+                            <li>Time :</li>
+                            <li>Day :</li>
+                            <li>Place :</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" id="BT_ENROLL" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Enroll Now</button>
+
+
+                </div>
+            </li>
+            <li class="Course_List" style="color:rgb(0,0,0);">
+                <div>
+                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
+                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
+                    <div>
+                        <ul class="course_show_list">
+                            <li>ID :</li>
+                            <li>Time :</li>
+                            <li>Day :</li>
+                            <li>Place :</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" id="BT_ENROLL" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Enroll Now</button>
+
+
+                </div>
+            </li>
+            <li class="Course_List" style="color:rgb(0,0,0);">
+                <div>
+                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
+                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
+                    <div>
+                        <ul class="course_show_list">
+                            <li>ID :</li>
+                            <li>Time :</li>
+                            <li>Day :</li>
+                            <li>Place :</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" id="BT_ENROLL" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Enroll Now</button>
+
+
+                </div>
+            </li>
+            <li class="Course_List" style="color:rgb(0,0,0);">
+                <div>
+                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
+                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
+                    <div>
+                        <ul class="course_show_list">
+                            <li>ID :</li>
+                            <li>Time :</li>
+                            <li>Day :</li>
+                            <li>Place :</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" id="BT_ENROLL" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Enroll Now</button>
+
+
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bs-animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="../assets/js/Simple-Slider.js"></script>
+
+
+</body>
+</html>

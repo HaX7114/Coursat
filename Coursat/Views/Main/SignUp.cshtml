@@ -1,0 +1,130 @@
+﻿@model Coursat.Models.USER
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abhaya+Libre">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo+Da">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    <link rel="stylesheet" href="../assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="../assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="../assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="../assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/Registration-Form-with-Photo-1.css">
+    <link rel="stylesheet" href="../assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="../assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/Team-Clean.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md fixed-top" style="color:rgb(110,131,152);background-color:#000000;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-monospace" href="#" id="COURSAT" style="font-size:28px;font-family:Actor, sans-serif;color:#ffffff;">Coursat</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1" style="background-color:#ffffff;"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="@Url.Action("Index","Main")" style="color:rgba(255,255,255,0.93);">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(255,255,255,0.83);">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(255,255,255,0.84);">Contact us</a></li>
+                </ul><a class="btn btn-primary" role="button" href="@Url.Action("SignUp","Main")" data-bs-hover-animate="pulse" id="HEADER" style="margin:7px;">Sign up</a><a href="@Url.Action("Login","Main")" id="LOGIN" style="margin:13px;color:rgb(255,255,255);">Login</a>
+            </div>
+        </div>
+    </nav>
+    <div class="register-photo" style="background-image:url(../assets/img/S1.jpg);background-size:cover;background-repeat:no-repeat;height:1000px;">
+        <div class="form-container" style="margin-top:90px;width:386px;height:507px;">
+            @using (Html.BeginForm("FinishingUp", "Main", FormMethod.Post, new { style = "background-color:rgba(0,0,0,0.83)" }))
+            {
+
+                <h2 class="text-center" style="color:#feffff;font-family:Actor, sans-serif;font-size:26px;"><strong>Create</strong> an account.</h2>
+
+                <div class="form-group">@Html.TextBoxFor(TX_EMAIL => TX_EMAIL.Email, new { placeholder = "Email", @class = "form-control", maxlength = "50", id = "SignUpEmail", style = "background-color:rgba(247,249,252,0)" })</div>
+                <div class="form-group">@Html.TextBoxFor(TX_USER => TX_USER.User_name, new { placeholder = "Username", @class = "form-control", maxlength = "20", id = "SignUpUser", style = "background-color:rgba(247,249,252,0)" })</div>
+                <div class="form-group">@Html.PasswordFor(TX_PASS => TX_PASS.Password, new { placeholder = "Password", @class = "form-control", maxlength = "50", id = "SignUpPass", style = "background-color:rgba(247,249,252,0)" })</div>
+                <div class="form-group">@Html.PasswordFor(TX_REPASS => TX_REPASS.RepeatPass, new { placeholder = "Repeat Password", @class = "form-control", maxlength = "50", id = "SignUpRePass", style = "background-color:rgba(247,249,252,0)" })</div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" data-bs-hover-animate="pulse" id="BT_IN_SIGNUP" style="background-color:#405fd1;">Sign up </button></div><a href="#" class="already" style="margin-top:0;">You already have an account? Login here.</a>
+                <div class="lds-ellipsis" id="show" style="margin-left:90px ; display:none"><div></div><div></div><div></div><div></div></div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script>
+                    $('#BT_IN_SIGNUP').click(function () { $('#show').show(); })
+                </script>
+                if (ViewBag.Empty == true)
+                {
+                    <br />
+                    <h6 style="text-align:center ; font-size:medium; color:red ">Fill the above to Sign up</h6>
+                }
+                else if (ViewBag.Pass == false)
+                {
+                    <br />
+                    <h6 style="text-align:center ; font-size:medium; color:red ">Passwords are not Identical</h6>
+
+                }
+                else if (ViewBag.RepeatedEmail == true)
+                {
+                    <br />
+                    <h6 style="text-align:center ; font-size:medium; color:red ">Existed email try another One</h6>
+
+                }
+                else if (ViewBag.RepeatedUser == true)
+                {
+                    <br />
+                    <h6 style="text-align:center ; font-size:medium; color:red ">Existed username try another One</h6>
+                }
+
+
+
+            }
+        </div>
+    </div>
+
+    <div class="footer-dark" style="background-color:#000000;">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3 id="FOOTER" style="color:rgb(64,95,209);">Services</h3>
+                        <ul>
+                            <li><a href="#">Booking</a></li>
+                            <li><a href="#">Search</a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3 id="FOOTER" style="color:rgb(64,95,209);">About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3 id="FOOTER" style="color:rgb(64,95,209);">Coursat</h3>
+                        <p></p>
+                    </div>
+                </div>
+                <p class="copyright">Coursat © 2020</p>
+            </div>
+        </footer>
+    </div>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bs-animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="../assets/js/Simple-Slider.js"></script>
+    
+  
+</body>
+</html>
