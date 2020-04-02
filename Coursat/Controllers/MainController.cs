@@ -14,6 +14,7 @@ namespace Coursat.Controllers
             {
             System.Threading.Thread.Sleep(2000);
                 return View();
+            
             }
 
             public ActionResult Index()
