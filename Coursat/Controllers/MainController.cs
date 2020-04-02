@@ -13,14 +13,11 @@ namespace Coursat.Controllers
         public ActionResult Login()
         {
             System.Threading.Thread.Sleep(2000);
-<<<<<<< HEAD
+
                 return View();
             
-            }
-=======
-            return View();
         }
->>>>>>> 6c05c942c5731336fddae01f01708fa3e2714c0b
+
 
         public ActionResult Index()
         {

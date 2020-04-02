@@ -55,7 +55,7 @@
                 <div class="form-group">@Html.TextBoxFor(TX_USER => TX_USER.User_name, new { placeholder = "Username", @class = "form-control", maxlength = "20", id = "SignUpUser", style = "background-color:rgba(247,249,252,0)" })</div>
                 <div class="form-group">@Html.PasswordFor(TX_PASS => TX_PASS.Password, new { placeholder = "Password", @class = "form-control", maxlength = "50", id = "SignUpPass", style = "background-color:rgba(247,249,252,0)" })</div>
                 <div class="form-group">@Html.PasswordFor(TX_REPASS => TX_REPASS.RepeatPass, new { placeholder = "Repeat Password", @class = "form-control", maxlength = "50", id = "SignUpRePass", style = "background-color:rgba(247,249,252,0)" })</div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" data-bs-hover-animate="pulse" id="BT_IN_SIGNUP" style="background-color:#405fd1;">Sign up </button></div><a href="#" class="already" style="margin-top:0;">You already have an account? Login here.</a>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" data-bs-hover-animate="pulse" id="BT_IN_SIGNUP" style="background-color:#405fd1;">Sign up </button></div><a href="@Url.Action("Login","Main")" class="already" style="margin-top:0;">You already have an account? Login here.</a>
                 <div class="lds-ellipsis" id="show" style="margin-left:90px ; display:none"><div></div><div></div><div></div><div></div></div>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <script>
