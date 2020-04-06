@@ -239,6 +239,7 @@ namespace Coursat.Controllers
                         System.Threading.Thread.Sleep(2000);
                         new DB_CONNECTION().Database.ExecuteSqlCommand
                                ("INSERT INTO USERS (Email , User_name , Password) VALUES ('" + user.Email + "'," + "'" + user.User_name + "'," + "'" + user.Password + "')");
+                        
                         return View("SigningUp");
                     }
 
@@ -255,6 +256,7 @@ namespace Coursat.Controllers
                 System.Threading.Thread.Sleep(2000);
                 new DB_CONNECTION().Database.ExecuteSqlCommand
                            ("INSERT INTO USERS (Email , User_name , Password) VALUES ('" + user.Email + "'," + "'" + user.User_name + "'," + "'" + user.Password + "')");
+               
                 return View("SigningUp");
             }
 
@@ -323,7 +325,7 @@ namespace Coursat.Controllers
 
         public void Create_User_Table(String Username) // Bassem , Omar function
         {
-
+            
         }
 
 
