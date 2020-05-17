@@ -310,7 +310,10 @@ namespace Coursat.Controllers
                                ("INSERT INTO USERS (Email , User_name , Password) VALUES ('" + user.Email + "'," + "'" + user.User_name + "'," + "'" + user.Password + "')");
 
                         
+<<<<<<< HEAD
 
+=======
+>>>>>>> 25c286a41ba7ae0a10cd5772d5bfb654791b465d
                                 Create_User_Table(user.User_name);
 
                         return View("SigningUp");
@@ -333,7 +336,10 @@ namespace Coursat.Controllers
                
 
                 Create_User_Table(user.User_name);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 25c286a41ba7ae0a10cd5772d5bfb654791b465d
                 return View("SigningUp");
             }
 
@@ -397,7 +403,63 @@ namespace Coursat.Controllers
         [HttpPost]
         public ActionResult Addadmin(ADMIN admin)  
         {
-            return View("AddAdmin");
+            try
+            {
+
+                if (admin.Email == null || admin.Password == null)
+                {
+                    System.Threading.Thread.Sleep(2000);
+                    ViewBag.Empty = true;
+                    return View("AddAdmin");
+                }
+                else
+                {
+                    System.Threading.Thread.Sleep(2000);
+
+                    String Admin_Email = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Email FROM ADMINS WHERE Email ='" + admin.Email + "'").FirstOrDefault<String>();
+
+                    String password = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Password FROM ADMINS WHERE Password ='" + admin.Password + "'").FirstOrDefault<String>();
+
+
+                    if (admin.Email.Equals(Admin_Email) && admin.Password.Equals(password))
+                    {
+                        
+                        ViewBag.Found = true;
+                        System.Threading.Thread.Sleep(2000);
+
+                        return View("AddAdmin");
+
+                    }
+                    else
+                    {
+                        System.Threading.Thread.Sleep(2000);
+                        new DB_CONNECTION().Database.ExecuteSqlCommand
+                                   ("INSERT INTO ADMINS (Email , Password) VALUES ('" + admin.Email + "'," + "'" + admin.Password + "')");
+
+                        ViewBag.isRight = true;
+
+                        return View("AddAdmin");
+
+                    }
+
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                System.Threading.Thread.Sleep(2000);
+                new DB_CONNECTION().Database.ExecuteSqlCommand
+                           ("INSERT INTO ADMINS (Email , Password) VALUES ('" + admin.Email + "'," + "'" + admin.Password + "')");
+
+                ViewBag.isRight = true;
+
+                return View("AddAdmin");
+
+
+
+            }
+
         }
 
         public void Create_User_Table(String Username) 
