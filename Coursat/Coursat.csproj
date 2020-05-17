@@ -170,8 +170,13 @@
     <Compile Include="Migrations\202003261929520_USERS_TABLE.designer.cs">
       <DependentUpon>202003261929520_USERS_TABLE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005141539431_ADD_COURSE_TABLE.cs" />
+    <Compile Include="Migrations\202005141539431_ADD_COURSE_TABLE.designer.cs">
+      <DependentUpon>202005141539431_ADD_COURSE_TABLE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ADMIN.cs" />
+    <Compile Include="Models\COURSE.cs" />
     <Compile Include="Models\DB_CONNECTION.cs" />
     <Compile Include="Models\USER.cs" />
     <Compile Include="Models\WEBSITE_USER.cs" />
@@ -217,6 +222,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003261929520_USERS_TABLE.resx">
       <DependentUpon>202003261929520_USERS_TABLE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005141539431_ADD_COURSE_TABLE.resx">
+      <DependentUpon>202005141539431_ADD_COURSE_TABLE.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -259,3 +259,4 @@ D:\project\Coursat\Coursat\obj\Debug\Coursat.csproj.GenerateResource.cache
 D:\project\Coursat\Coursat\obj\Debug\Coursat.csproj.CopyComplete
 D:\project\Coursat\Coursat\obj\Debug\Coursat.dll
 D:\project\Coursat\Coursat\obj\Debug\Coursat.pdb
+C:\Users\user\Desktop\My_Projects\Coursat\Coursat\obj\Debug\Coursat.Migrations.ADD_COURSE_TABLE.resources

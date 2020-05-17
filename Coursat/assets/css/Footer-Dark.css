@@ -93,6 +93,9 @@
   text-transform:none;
 }
 
+#TEXT_FORM {
+  border-bottom:1px solid #434a52;
+}
 
 #JUMBOTRON_SHADOW {
   box-shadow:5px 20px 50px 5px black;
@@ -119,19 +122,124 @@ form {
   /*text-align:start;*/
 }
 
-#TX_IN_ADMIN {
-  border-radius:12px;
-  border-style:double;
-  border-color:rgb(28,217,181);
-  border-width:0.5px;
-  background-color:transparent;
-  box-shadow:0px 0px 10px 0px rgb(232,232,232);
+#ADDCOURSE_TX_ID {
+    border-radius: 12px;
+    border-style: double;
+    border-color: rgb(28,217,181);
+    border-width: 0.5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px rgb(232,232,232);
+}
+#ADDCOURSE_TX_NAME {
+    border-radius: 12px;
+    border-style: double;
+    border-color: rgb(28,217,181);
+    border-width: 0.5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px rgb(232,232,232);
+}
+#ADDCOURSE_TX_PLACE {
+    border-radius: 12px;
+    border-style: double;
+    border-color: rgb(28,217,181);
+    border-width: 0.5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px rgb(232,232,232);
+}
+#ADDCOURSE_TX_STDNUM {
+    border-radius: 12px;
+    border-style: double;
+    border-color: rgb(28,217,181);
+    border-width: 0.5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px rgb(232,232,232);
 }
 
-#BT_IN_ADMIN {
-  background-image:linear-gradient(to right, rgb(33,221,164) , rgb(20,164,252));
-  border-color:transparent;
-  border-radius:12px;
+#EDITCOURSE_TX_SEARCH {
+    border-radius: 12px;
+    border-style: double;
+    border-color: rgb(28,217,181);
+    border-width: 0.5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px rgb(232,232,232);
+}
+#EDITCOURSE_TX_ID {
+    border-radius: 12px;
+    border-style: double;
+    border-color: rgb(28,217,181);
+    border-width: 0.5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px rgb(232,232,232);
+}
+#EDITCOURSE_TX_NAME {
+    border-radius: 12px;
+    border-style: double;
+    border-color: rgb(28,217,181);
+    border-width: 0.5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px rgb(232,232,232);
+}
+#EDITCOURSE_TX_PLACE {
+    border-radius: 12px;
+    border-style: double;
+    border-color: rgb(28,217,181);
+    border-width: 0.5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px rgb(232,232,232);
+}
+#EDITCOURSE_TX_STDNUM {
+    border-radius: 12px;
+    border-style: double;
+    border-color: rgb(28,217,181);
+    border-width: 0.5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px rgb(232,232,232);
+}
+
+#ADDADMIN_TX_EMAIL {
+    border-radius: 12px;
+    border-style: double;
+    border-color: rgb(28,217,181);
+    border-width: 0.5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px rgb(232,232,232);
+}
+#ADDADMIN_TX_PASS {
+    border-radius: 12px;
+    border-style: double;
+    border-color: rgb(28,217,181);
+    border-width: 0.5px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 0px rgb(232,232,232);
+}
+#ADDADMIN_BT_ADD {
+    background-image: linear-gradient(to right, rgb(33,221,164), rgb(20,164,252));
+    border-color: transparent;
+    border-radius: 12px;
+}
+
+#ADDCOURSE_BT_ADD {
+    background-image: linear-gradient(to right, rgb(33,221,164), rgb(20,164,252));
+    border-color: transparent;
+    border-radius: 12px;
+}
+
+
+#HEADER_BT_LOGOUT {
+    background-image: linear-gradient(to right, rgb(33,221,164), rgb(20,164,252));
+    border-color: transparent;
+    border-radius: 12px;
+}
+
+#EDITCOURSE_BT_EDIT {
+    background-image: linear-gradient(to right, rgb(33,221,164), rgb(20,164,252));
+    border-color: transparent;
+    border-radius: 12px;
+}
+#EDITCOURSE_BT_DELETE {
+    background-image: linear-gradient(to right, rgb(33,221,164), rgb(20,164,252));
+    border-color: transparent;
+    border-radius: 12px;
 }
 
 #SIGNUP {
@@ -270,3 +378,111 @@ div {
   border-radius:20px;
 }
 
+.btn:not(:disabled):not(.disabled) {
+}
+
+#DROPDOWN_HOUR {
+  border-color:rgb(87,227,200);
+  border-radius:12px;
+  box-shadow:0px 0px 10px 0px rgb(232,232,232);
+}
+#DROPDOWN_MIN {
+  border-color:rgb(87,227,200);
+  border-radius:12px;
+  box-shadow:0px 0px 10px 0px rgb(232,232,232);
+}
+#DROPDOWN_DAY {
+  border-color:rgb(87,227,200);
+  border-radius:12px;
+  box-shadow:0px 0px 10px 0px rgb(232,232,232);
+}
+
+#T_MENU {
+  width:99px;
+  border-color:rgb(192,241,231);
+  border-radius:12px;
+  box-shadow:0px 0px 10px 0px rgb(232,232,232);
+  overflow-y:scroll;
+  max-height:160px;
+}
+
+#T_MENU_M {
+  border-color:rgb(192,241,231);
+  border-radius:12px;
+  box-shadow:0px 0px 10px 0px rgb(232,232,232);
+  max-height:160px;
+}
+
+#D_MENU {
+  border-color:rgb(192,241,231);
+  border-radius:12px;
+  box-shadow:0px 0px 10px 0px rgb(232,232,232);
+  max-height:160px;
+}
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+    .lds-ellipsis div {
+        position: absolute;
+        top: 33px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #fff;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+        .lds-ellipsis div:nth-child(1) {
+            left: 8px;
+            animation: lds-ellipsis1 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(2) {
+            left: 8px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(3) {
+            left: 32px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(4) {
+            left: 56px;
+            animation: lds-ellipsis3 0.6s infinite;
+        }
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(24px, 0);
+    }
+}

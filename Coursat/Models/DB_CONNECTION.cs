@@ -16,5 +16,7 @@ namespace Coursat.Models
         public DbSet<USER> Users { get; set; }
 
         public DbSet<ADMIN> Admins { get; set; }
+
+        public DbSet<COURSE> Course { get; set; }
     }
 }

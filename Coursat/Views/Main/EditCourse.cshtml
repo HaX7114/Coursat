@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="../assets/css/Simple-Slider.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/Team-Clean.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#" style="color:rgba(255,255,255,0.93);font-family:Actor, sans-serif;"></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(255,255,255,0.83);"></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(255,255,255,0.84);"></a></li>
-                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="BT_IN_ADMIN" onclick="location.href='@Url.Action("AdminLogin","Main")'" style="margin:7px;">Logout</button>
+                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="HEADER_BT_LOGOUT" onclick="location.href='@Url.Action("AdminLogin","Main")'" style="margin:7px;">Logout</button>
             </div>
         </div>
     </nav>
@@ -52,18 +53,599 @@
         <a class="btn btn-primary" role="button" href="@Url.Action("EditCourse","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:-189px;background-color:#1e2833;">Edit Course<img class="float-left" src="../assets/img/pencil.png" style="width:26px;margin-right:-31px;"></a>
         <a class="btn btn-primary" role="button" href="@Url.Action("ShowCourses","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:-140px;background-color:rgb(30,40,51);">Show Courses<img class="float-left" src="../assets/img/menu.png" style="width:26px;margin-right:-7px;"></a>
         <div class="container float-right" style="margin-top:-250px;margin-left:0px;margin-right:-428px;width:387px;height:269px;">
-            <input class="form-control-sm" type="text" placeholder="Search Courses To Edit..." id="TX_IN_ADMIN" style="width:335px;height:37px;">
-            <button class="btn btn-primary" type="button" data-bs-hover-animate="bounce" id="BT_IN_ADMIN" style="width:123px;height:39px;margin-left:358px;margin-top:-39px;">Search</button>
-            <p style="color:#1e2833;margin-top:5px;">Course ID :</p><input type="password" placeholder="1532" id="TX_IN_ADMIN" style="margin-top:0px;width:206px;padding-left:8px;">
-            <p style="color:#1e2833;margin-top:5px;">Course Name :</p><input type="password" placeholder="Graphic Design" id="TX_IN_ADMIN" style="margin-top:0px;width:206px;padding-left:8px;">
-            <p style="color:#1e2833;margin-top:5px;">Course Time :</p><input type="password" placeholder="hours" maxlength="2" id="TX_IN_ADMIN" style="margin-top:0px;width:99px;padding-left:8px;height:30px;"><input type="password" placeholder="min" maxlength="2" id="TX_IN_ADMIN" style="margin-top:0px;width:99px;margin-left:7px;padding-left:10px;height:30px;">
-            <p style="color:#1e2833;margin-top:5px;">Course Day :</p><input type="password" placeholder="Sunday" maxlength="9" id="TX_IN_ADMIN" style="margin-top:0px;width:206px;padding-left:8px;">
-            <p style="color:#1e2833;margin-top:5px;">Course Place :</p><input type="password" placeholder="Hall1" id="TX_IN_ADMIN" style="margin-top:0px;width:206px;padding-left:8px;">
-            <p style="color:#1e2833;margin-top:5px;">Max Number Of Students :</p><input type="password" placeholder="50" id="TX_IN_ADMIN" style="margin-top:0px;width:206px;padding-left:8px;">
-            <button class="btn btn-primary" type="button" data-bs-hover-animate="bounce" id="BT_IN_ADMIN" style="width:111px;height:39px;margin-left:24px;margin-top:-5px;">Edit Course</button>
-            <button class="btn btn-primary" type="button" data-bs-hover-animate="bounce" id="BT_IN_ADMIN" style="width:123px;height:39px;margin-left:358px;margin-top:-39px;">Delete Course</button>
+
+            <input class="form-control-sm" type="number" placeholder="Search Courses By ID..." id="EDITCOURSE_TX_SEARCH" style="width:335px;height:37px;">
+
+            <p style="color:red; display:none; font-size:small" id="RESULT">No results Found !</p>
+
+            <p style="color:#1e2833;">Course ID :</p>
+
+            <input type="number" placeholder="1532" maxlength="50" id="EDITCOURSE_TX_ID" style="width:206px;padding-left:8px;">
+
+            <p id="EXISTED_ID" style="color:red ; display:none">This ID is existed to anthor Course !</p>
+
+            <p style="color:#1e2833;margin-top:5px;">Course Name :</p>
+
+            <input type="text" placeholder="Graphic Design" maxlength="50" id="EDITCOURSE_TX_NAME" style="margin-top:0px;width:206px;padding-left:8px;">
+
+            <p id="EXISTED_NAME" style="color:red ; display:none">This Name is existed to anthor Course !</p>
+
+
+            <p style="color:#1e2833;margin-top:5px;">Course Time :</p>
+
+            <div class="dropdown" style="width:100px;margin-left:108px;">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" id="DROPDOWN_MIN" style="background-color:rgb(255,255,255);width:99px;height:37px;color:rgba(0,0,0,0.60);font-size:14px;">Min&nbsp;</button>
+                <div class="dropdown-menu" role="menu" id="T_MENU_M" style="font-size: 12px; min-width: 0px; width: 100px; position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
+                    <a class="dropdown-item" role="button" id="MIN00">00</a>
+                    <a class="dropdown-item" role="button" id="MIN15">15</a>
+                    <a class="dropdown-item" role="button" id="MIN30">30</a>
+                    <a class="dropdown-item" role="button" id="MIN45">45</a>
+
+                    <script>
+
+                        var M_VAL;
+
+                        $('#MIN00').click(function () {
+
+                            $('#DROPDOWN_MIN').text("00");
+
+                            M_VAL = 00;
+                        })
+
+                        $('#MIN15').click(function () {
+
+                            $('#DROPDOWN_MIN').text("15");
+
+                            M_VAL = 15;
+                        })
+
+                        $('#MIN30').click(function () {
+
+                            $('#DROPDOWN_MIN').text("30");
+
+                            M_VAL = 30;
+                        })
+
+                        $('#MIN45').click(function () {
+
+                            $('#DROPDOWN_MIN').text("45");
+
+                            M_VAL = 45;
+                        })
+
+
+
+                    </script>
+                </div>
+            </div>
+
+            <div class="dropdown" style="width:100px;margin-right:-100px;">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" id="DROPDOWN_HOUR" style="background-color:rgb(255,255,255);width:99px;height:37px;margin-top:-37px;color:rgba(0,0,0,0.60);font-size:14px;">Hour&nbsp;</button>
+                <div class="dropdown-menu" role="menu" id="T_MENU" style="font-size:12px;min-width:78px;">
+                    <a class="dropdown-item" role="button" id="00">00</a>
+                    <a class="dropdown-item" role="button" id="01">01</a>
+                    <a class="dropdown-item" role="button" id="02">02</a>
+                    <a class="dropdown-item" role="button" id="03">03</a>
+                    <a class="dropdown-item" role="button" id="04">04</a>
+                    <a class="dropdown-item" role="button" id="05">05</a>
+                    <a class="dropdown-item" role="button" id="06">06</a>
+                    <a class="dropdown-item" role="button" id="07">07</a>
+                    <a class="dropdown-item" role="button" id="08">08</a>
+                    <a class="dropdown-item" role="button" id="09">09</a>
+                    <a class="dropdown-item" role="button" id="10">10</a>
+                    <a class="dropdown-item" role="button" id="11">11</a>
+                    <a class="dropdown-item" role="button" id="12">12</a>
+                    <a class="dropdown-item" role="button" id="13">13</a>
+                    <a class="dropdown-item" role="button" id="14">14</a>
+                    <a class="dropdown-item" role="button" id="15">15</a>
+                    <a class="dropdown-item" role="button" id="16">16</a>
+                    <a class="dropdown-item" role="button" id="17">17</a>
+                    <a class="dropdown-item" role="button" id="18">18</a>
+                    <a class="dropdown-item" role="button" id="19">19</a>
+                    <a class="dropdown-item" role="button" id="20">20</a>
+                    <a class="dropdown-item" role="button" id="21">21</a>
+                    <a class="dropdown-item" role="button" id="22">22</a>
+                    <a class="dropdown-item" role="button" id="23">23</a>
+
+                    <script>
+
+                        var H_VAL;
+
+                        $('#00').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("00");
+
+                            H_VAL = 00;
+                        })
+
+                        $('#01').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("01");
+
+                            H_VAL = 01;
+                        })
+
+                        $('#02').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("02");
+
+                            H_VAL = 02;
+                        })
+
+                        $('#03').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("03");
+
+                            H_VAL = 03;
+                        })
+
+                        $('#04').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("04");
+
+                            H_VAL = 04;
+                        })
+
+                        $('#05').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("05");
+
+                            H_VAL = 05;
+                        })
+
+                        $('#06').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("06");
+
+                            H_VAL = 06;
+                        })
+
+                        $('#07').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("07");
+
+                            H_VAL = 07;
+                        })
+
+                        $('#08').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("08");
+
+                            H_VAL = 08;
+                        })
+
+                        $('#09').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("09");
+
+                            H_VAL = 09;
+                        })
+
+                        $('#10').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("10");
+
+                            H_VAL = 10;
+                        })
+
+                        $('#11').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("11");
+
+                            H_VAL = 11;
+                        })
+
+                        $('#12').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("12");
+
+                            H_VAL = 12;
+                        })
+
+                        $('#13').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("13");
+
+                            H_VAL = 13;
+                        })
+
+                        $('#14').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("14");
+
+                            H_VAL = 14;
+                        })
+
+                        $('#15').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("15");
+
+                            H_VAL = 15;
+                        })
+
+                        $('#16').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("16");
+
+                            H_VAL = 16;
+                        })
+
+                        $('#17').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("17");
+
+                            H_VAL = 17;
+                        })
+
+                        $('#18').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("18");
+
+                            H_VAL = 18;
+                        })
+
+                        $('#19').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("19");
+
+                            H_VAL = 19;
+                        })
+
+                        $('#20').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("20");
+
+                            H_VAL = 20;
+                        })
+
+                        $('#21').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("21");
+
+                            H_VAL = 21;
+                        })
+
+                        $('#22').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("22");
+
+                            H_VAL = 22;
+                        })
+
+                        $('#23').click(function () {
+
+                            $('#DROPDOWN_HOUR').text("23");
+
+                            H_VAL = 23;
+                        })
+
+
+                    </script>
+                </div>
+            </div>
+
+            <p style="color:#1e2833;margin-top:5px;">Course Day :</p>
+
+            <div class="dropdown" style="width:100px;margin-right:-100px;">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" id="DROPDOWN_DAY" style="background-color:rgb(255,255,255);width:208px;height:37px;margin-top:0px;color:rgba(0,0,0,0.60);font-size:14px;">Day</button>
+                <div class="dropdown-menu" role="menu" id="D_MENU" style="font-size:12px;width:206px;height:200px;max-height:195px;">
+                    <a class="dropdown-item" role="button" id="SUN">Sunday</a>
+                    <a class="dropdown-item" role="button" id="MON">Monday</a>
+                    <a class="dropdown-item" role="button" id="TUE">Tuesday</a>
+                    <a class="dropdown-item" role="button" id="WED">Wednesday</a>
+                    <a class="dropdown-item" role="button" id="THU">Thursday</a>
+                    <a class="dropdown-item" role="button" id="FRI">Friday</a>
+                    <a class="dropdown-item" role="button" id="SAT">Saturday</a>
+
+                    <script>
+
+                        var D_VAL;
+
+                        $('#SUN').click(function () {
+
+                            $('#DROPDOWN_DAY').text("Sunday");
+
+                            D_VAL = "Sunday";
+                        })
+
+                        $('#MON').click(function () {
+
+                            $('#DROPDOWN_DAY').text("Monday");
+
+                            D_VAL = "Monday";
+                        })
+
+                        $('#TUE').click(function () {
+
+                            $('#DROPDOWN_DAY').text("Tuesday");
+
+                            D_VAL = "Tuesday";
+                        })
+
+                        $('#WED').click(function () {
+
+                            $('#DROPDOWN_DAY').text("Wednesday");
+
+                            D_VAL = "Wednesday";
+                        })
+
+                        $('#THU').click(function () {
+
+                            $('#DROPDOWN_DAY').text("Thursday");
+
+                            D_VAL = "Thursday";
+                        })
+
+                        $('#FRI').click(function () {
+
+                            $('#DROPDOWN_DAY').text("Friday");
+
+                            D_VAL = "Friday";
+                        })
+
+                        $('#SAT').click(function () {
+
+                            $('#DROPDOWN_DAY').text("Saturday");
+
+                            D_VAL = "Saturday";
+                        })
+
+
+                    </script>
+                </div>
+            </div>
+
+            <p style="color:#1e2833;margin-top:5px;">Course Place :</p>
+
+            <input type="text" placeholder="Hall1" maxlength="50" id="EDITCOURSE_TX_PLACE" style="margin-top:0px;width:206px;padding-left:8px;">
+
+            <p style="color:#1e2833;margin-top:5px;">Max Number Of Students :</p>
+
+            <input type="number" placeholder="50" maxlength="50" id="EDITCOURSE_TX_STDNUM" style="margin-top:0px;width:206px;padding-left:8px;">
+
+            <button class="btn btn-primary" type="button" data-bs-hover-animate="bounce" id="EDITCOURSE_BT_EDIT" style="width:111px;height:39px;margin-left:24px;margin-top:-5px;">Edit Course</button>
+
+            <button class="btn btn-primary" type="button" data-bs-hover-animate="bounce" id="EDITCOURSE_BT_DELETE" style="width:123px;height:39px;margin-left:358px;margin-top:-39px;">Delete Course</button>
+
+            <p id="NOT_EDITED" style="color:red ; display:none ; font-size:small">The Data you submitted is Invalid ! </p>
+
+            <p id="EDITED" style="color:green ; display:none ; font-size:small">Data edited Successfully !</p>
+            
+            <p id="DELETED" style="color:green ; display:none ; font-size:small">Course deleted Successfully !</p>
+
         </div>
     </div>
+    <script>
+
+        var RETURNED_NAME; // To save name that returned while serch operation
+
+
+        $('#EDITCOURSE_TX_SEARCH').change(function () {
+
+            var ID = $('#EDITCOURSE_TX_SEARCH').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Search_Course","Main")',
+                data: { Course_ID: ID },
+                datatype: "json",
+                success: function (ARRAY) {
+                    if (ARRAY[0] != null) {
+
+                        $('#EDITCOURSE_TX_ID').val(ARRAY[0]);
+                        $('#EDITCOURSE_TX_NAME').val(ARRAY[1]);
+                        $('#DROPDOWN_HOUR').text(ARRAY[2]);
+                        $('#DROPDOWN_MIN').text(ARRAY[3]);
+                        $('#DROPDOWN_DAY').text(ARRAY[4]);
+                        $('#EDITCOURSE_TX_PLACE').val(ARRAY[5]);
+                        $('#EDITCOURSE_TX_STDNUM').val(ARRAY[6]);
+                        RETURNED_NAME = $('#EDITCOURSE_TX_NAME').val(); // To save name that returned while serch operation
+
+                        $('#RESULT').hide();
+
+                    }
+                    else {
+
+
+                        $('#RESULT').show().delay(3000).fadeOut();
+
+                    }
+
+                },
+                error: function () {
+                    alert(error)
+                }
+
+            });
+        });
+
+        $('#EDITCOURSE_BT_EDIT').click(function () { //when click on EDIT COURSE
+
+            var ID = $('#EDITCOURSE_TX_ID').val();
+            var Name = $('#EDITCOURSE_TX_NAME').val();
+            var PLACE = $('#EDITCOURSE_TX_PLACE').val();
+            var STDNUM = $('#EDITCOURSE_TX_STDNUM').val();
+            var Hours = $('#DROPDOWN_HOUR').text();
+            var Min = $('#DROPDOWN_MIN').text();
+            var Day = $('#DROPDOWN_DAY').text();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Edit_Course","Main")',
+                data: {
+                    Course_ID: ID,
+                    Course_Name: Name,
+                    Course_Place: PLACE,
+                    Max_Students_Number: STDNUM,
+                    Course_Hours: Hours,
+                    Course_Min: Min,
+                    Course_Day: Day
+                },
+                datatype: "json",
+                success: function (EDITED) {
+                    if (!EDITED) {
+
+                        $('#NOT_EDITED').show().delay(3000).fadeOut();
+
+                        $('#EDITED').hide();
+                    }
+                    else {
+
+                        $('#NOT_EDITED').hide();
+
+                        $('#EDITED').show().delay(3000).fadeOut();
+                    }
+
+                },
+                error: function () {
+                    
+                }
+
+            });
+       
+        });
+
+
+    </script>
+    <script>
+        $('#EDITCOURSE_TX_ID').change(function () { // CHECK if ID is EXISTED
+
+            var ID = $('#EDITCOURSE_TX_ID').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Check_ID","Main")',
+                data: { Course_ID: ID },
+                datatype: "json",
+                success: function (resid) {
+                    if (!resid) {
+                        if ($('#EDITCOURSE_TX_SEARCH').val() != ID) {
+
+                            document.getElementById("EDITCOURSE_TX_ID").style.borderColor = "red";
+
+                            $('#EXISTED_ID').show();
+
+                            document.getElementById("EDITCOURSE_BT_EDIT").disabled = true;
+
+                            document.getElementById("EDITCOURSE_BT_DELETE").disabled = true;
+                        }
+                        else 
+                        {
+                            document.getElementById("EDITCOURSE_TX_ID").style.borderColor = "rgb(28,217,181)";
+
+                            $('#EXISTED_ID').hide();
+
+                            document.getElementById("EDITCOURSE_BT_EDIT").disabled = false;
+
+                            document.getElementById("EDITCOURSE_BT_DELETE").disabled = false;
+                        }
+                        
+                    }
+                    else {
+                        document.getElementById("EDITCOURSE_TX_ID").style.borderColor = "rgb(28,217,181)";
+
+                        $('#EXISTED_ID').hide();
+
+                        document.getElementById("EDITCOURSE_BT_EDIT").disabled = false;
+
+                        document.getElementById("EDITCOURSE_BT_DELETE").disabled = false;
+                    }
+
+                },
+                error: function () {
+
+                }
+
+            });
+        });
+
+    </script>
+    <script>
+
+        
+        $('#EDITCOURSE_TX_NAME').change(function () { //CHECK id NAME is EXISTED 
+
+
+            var Name = $('#EDITCOURSE_TX_NAME').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Check_Name","Main")',
+                data: { Course_Name: Name },
+                datatype: "json",
+                success: function (resname) {
+                    if (!resname) {
+                        if (RETURNED_NAME != Name) {
+                            document.getElementById("EDITCOURSE_TX_NAME").style.borderColor = "red";
+
+                            $('#EXISTED_NAME').show();
+
+                            document.getElementById("EDITCOURSE_BT_EDIT").disabled = true;
+
+                            document.getElementById("EDITCOURSE_BT_DELETE").disabled = true;
+                        }
+                        
+                        else {
+                            document.getElementById("EDITCOURSE_TX_NAME").style.borderColor = "rgb(28,217,181)";
+
+                            $('#EXISTED_NAME').hide();
+
+                            document.getElementById("EDITCOURSE_BT_EDIT").disabled = false;
+
+                            document.getElementById("EDITCOURSE_BT_DELETE").disabled = false;
+                        }
+                    }
+                    else {
+                        document.getElementById("EDITCOURSE_TX_NAME").style.borderColor = "rgb(28,217,181)";
+
+                        $('#EXISTED_NAME').hide();
+
+                        document.getElementById("EDITCOURSE_BT_EDIT").disabled = false;
+
+                        document.getElementById("EDITCOURSE_BT_DELETE").disabled = false;
+
+                    }
+
+                },
+                error: function () {
+
+                }
+
+            });
+        });
+
+    </script>
+    <script>
+
+        $('#EDITCOURSE_BT_DELETE').click(function () { //when click on DELETE COURSE
+
+            var ID = $('#EDITCOURSE_TX_SEARCH').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Delete_Course","Main")',
+                    data: {
+                        Course_ID: ID,
+                    },
+                    datatype: "json",
+                    success: function () {
+
+
+                            $('#DELETED').show().delay(3000).fadeOut();
+
+                    },
+                    error: function () {
+
+                    }
+
+
+                });
+            
+
+        });
+
+
+    </script>
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bs-animation.js"></script>

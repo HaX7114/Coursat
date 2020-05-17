@@ -1,4 +1,7 @@
-﻿<html>
+﻿@using Coursat.Models
+
+
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +42,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#" style="color:rgba(255,255,255,0.93);font-family:Actor, sans-serif;"></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(255,255,255,0.83);"></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(255,255,255,0.84);"></a></li>
-                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="BT_IN_ADMIN" onclick="location.href='@Url.Action("AdminLogin","Main")'" style="margin:7px;">Logout</button>
+                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="HEADER_BT_LOGOUT" onclick="location.href='@Url.Action("AdminLogin","Main")'" style="margin:7px;">Logout</button>
             </div>
         </div>
     </nav>
@@ -53,188 +56,35 @@
         <a class="btn btn-primary" role="button" href="@Url.Action("ShowCourses","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:-140px;background-color:rgb(30,40,51);">Show Courses<img class="float-left" src="../assets/img/menu.png" style="width:26px;margin-right:-7px;"></a>
     </div>
     <div class="container" style="margin-left:199px;margin-top:95px;width:543px;">
-        <ul class="list-unstyled swing animated">
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc">About The Course :</h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                            <li>Max Students Number :</li>
+        @if (!ViewBag.Empty)
+        {
+            foreach (COURSE item in ViewBag.Courses)
+            {
+                <ul class="list-unstyled swing animated">
+                    <li class="Course_List" style="color:rgb(0,0,0);">
+                        <div>
+                            <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   @item.Course_Name </h5>
+                            <h6 class="course_disc">About This Course :</h6>
+                            <div>
+                                <ul class="course_show_list">
+                                    <li>ID : @item.Course_ID</li>
+                                    <li>Time : @item.Course_Hours : @item.Course_Min</li>
+                                    <li>Day : @item.Course_Day</li>
+                                    <li>Place : @item.Course_Place</li>
+                                    <li>Max Students Number : @item.Max_Students_Number</li>
 
-                        </ul>
-                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            }
+        }
+        else
+        {
+            <h1>You have not added any courses Yet !</h1>
+        }
 
-
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc">About The Course :</h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                            <li>Max Students Number :</li>
-
-                        </ul>
-                    </div>
-
-
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc">About The Course :</h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                            <li>Max Students Number :</li>
-
-                        </ul>
-                    </div>
-
-
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc">About The Course :</h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                            <li>Max Students Number :</li>
-
-                        </ul>
-                    </div>
-
-
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc">About The Course :</h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                            <li>Max Students Number :</li>
-
-                        </ul>
-                    </div>
-
-
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc">About The Course :</h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                            <li>Max Students Number :</li>
-
-                        </ul>
-                    </div>
-
-
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc">About The Course :</h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                            <li>Max Students Number :</li>
-
-                        </ul>
-                    </div>
-
-
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc">About The Course :</h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                            <li>Max Students Number :</li>
-
-                        </ul>
-                    </div>
-
-
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc">About The Course :</h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                            <li>Max Students Number :</li>
-
-                        </ul>
-                    </div>
-
-
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc">About The Course :</h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                            <li>Max Students Number :</li>
-
-                        </ul>
-                    </div>
-
-
-                </div>
-            </li>
-        </ul>
     </div>
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

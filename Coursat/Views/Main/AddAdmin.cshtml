@@ -42,7 +42,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#" style="color:rgba(255,255,255,0.93);font-family:Actor, sans-serif;"></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(255,255,255,0.83);"></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(255,255,255,0.84);"></a></li>
-                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="BT_IN_ADMIN" onclick="location.href='@Url.Action("AdminLogin","Main")'" style="margin:7px;">Logout</button>
+                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="HEADER_BT_LOGOUT" onclick="location.href='@Url.Action("AdminLogin","Main")'" style="margin:7px;">Logout</button>
             </div>
         </div>
     </nav>
@@ -59,11 +59,12 @@
             <div class="container float-right" style="margin-top:-250px;margin-left:0px;margin-right:-428px;width:387px;height:269px;">
                 @using (Html.BeginForm("Addadmin", "Main", FormMethod.Post))
                 {
-                    <p style="color:#1e2833;">Email :</p>@Html.TextBoxFor(TX_EMAIL => TX_EMAIL.Email, new { maxlength = "50", id = "TX_IN_ADMIN", style = "width:206px ; padding-left:8px;" })
-                    <p style="color:#1e2833;margin-top:5px;">Password :</p>@Html.PasswordFor(TX_PASS => TX_PASS.Password, new { maxlength = "50", id = "TX_IN_ADMIN", style = "margin-top:0px;width:206px; padding-left:8px;" })
-                    <button class="btn btn-primary" type="submit" data-bs-hover-animate="bounce" id="BT_IN_ADMIN" onclick="location.href='@Url.Action("Addadmin", "Main")'" style="width:111px;height:39px;margin-left:24px;margin-top:-5px;">Add Admin</button>
+                    <p style="color:#1e2833;">Email :</p>@Html.TextBoxFor(TX_EMAIL => TX_EMAIL.Email, new { maxlength = "50", id = "ADDADMIN_TX_EMAIL", style = "width:206px ; padding-left:8px;" })
+                    <p style="color:#1e2833;margin-top:5px;">Password :</p>@Html.PasswordFor(TX_PASS => TX_PASS.Password, new { maxlength = "50", id = "ADDADMIN_TX_PASS", style = "margin-top:0px;width:206px; padding-left:8px;" })
+                    <button class="btn btn-primary" type="submit" data-bs-hover-animate="bounce" id="ADDADMIN_BT_ADD" onclick="location.href='@Url.Action("Addadmin", "Main")'" style="width:111px;height:39px;margin-left:24px;margin-top:-5px;">Add Admin</button>
                     
                 }
+
             </div>
             
         </div>
