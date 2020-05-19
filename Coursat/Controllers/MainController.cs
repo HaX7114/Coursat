@@ -14,8 +14,8 @@ namespace Coursat.Controllers
         {
             System.Threading.Thread.Sleep(2000);
 
-                return View();
-            
+            return View();
+
         }
 
 
@@ -309,12 +309,9 @@ namespace Coursat.Controllers
                         new DB_CONNECTION().Database.ExecuteSqlCommand
                                ("INSERT INTO USERS (Email , User_name , Password) VALUES ('" + user.Email + "'," + "'" + user.User_name + "'," + "'" + user.Password + "')");
 
-                        
-<<<<<<< HEAD
 
-=======
->>>>>>> 25c286a41ba7ae0a10cd5772d5bfb654791b465d
-                                Create_User_Table(user.User_name);
+
+                        Create_User_Table(user.User_name);
 
                         return View("SigningUp");
                     }
@@ -333,20 +330,17 @@ namespace Coursat.Controllers
                 new DB_CONNECTION().Database.ExecuteSqlCommand
                            ("INSERT INTO USERS (Email , User_name , Password) VALUES ('" + user.Email + "'," + "'" + user.User_name + "'," + "'" + user.Password + "')");
 
-               
+
 
                 Create_User_Table(user.User_name);
-<<<<<<< HEAD
 
-=======
->>>>>>> 25c286a41ba7ae0a10cd5772d5bfb654791b465d
                 return View("SigningUp");
             }
 
         }
 
         [HttpPost]
-        public ActionResult Retrievepassword(USER user)  
+        public ActionResult Retrievepassword(USER user)
         {
             try
             {
@@ -401,7 +395,7 @@ namespace Coursat.Controllers
 
 
         [HttpPost]
-        public ActionResult Addadmin(ADMIN admin)  
+        public ActionResult Addadmin(ADMIN admin)
         {
             try
             {
@@ -423,7 +417,7 @@ namespace Coursat.Controllers
 
                     if (admin.Email.Equals(Admin_Email) && admin.Password.Equals(password))
                     {
-                        
+
                         ViewBag.Found = true;
                         System.Threading.Thread.Sleep(2000);
 
@@ -462,10 +456,10 @@ namespace Coursat.Controllers
 
         }
 
-        public void Create_User_Table(String Username) 
+        public void Create_User_Table(String Username)
         {
 
-            
+
 
             new DB_CONNECTION().Database.ExecuteSqlCommand
                     ("CREATE TABLE " + Username + "(ID int ,COURSE_NAME varchar(50))");
@@ -474,13 +468,13 @@ namespace Coursat.Controllers
 
         }
 
-        public JsonResult Add_Course(String Course_ID , String Course_Name , String Course_Hours , String Course_Min , String Course_Day , String Course_Place , String Max_Students_Number)
+        public JsonResult Add_Course(String Course_ID, String Course_Name, String Course_Hours, String Course_Min, String Course_Day, String Course_Place, String Max_Students_Number)
         {
             bool ADDED = false;
 
-            if(Course_ID == null || Course_Name == null || Course_Hours == null || Course_Min == null || Course_Day == null || Course_Place == null || Max_Students_Number == null)
+            if (Course_ID == null || Course_Name == null || Course_Hours == null || Course_Min == null || Course_Day == null || Course_Place == null || Max_Students_Number == null)
             {
-                return Json(ADDED,JsonRequestBehavior.AllowGet);
+                return Json(ADDED, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -501,7 +495,7 @@ namespace Coursat.Controllers
                 }
                 catch (Exception e)
                 {
-                    
+
                     return Json(ADDED, JsonRequestBehavior.AllowGet);
 
                 }
@@ -509,11 +503,11 @@ namespace Coursat.Controllers
 
 
         }
-        public JsonResult Edit_Course(String Course_ID , String Course_Name , String Course_Hours , String Course_Min , String Course_Day , String Course_Place , String Max_Students_Number)
+        public JsonResult Edit_Course(String Course_ID, String Course_Name, String Course_Hours, String Course_Min, String Course_Day, String Course_Place, String Max_Students_Number)
         {
             bool EDITED = false;
 
-            if(Course_ID == null || Course_Name == null || Course_Hours == null || Course_Min == null || Course_Day == null || Course_Place == null || Max_Students_Number == null)
+            if (Course_ID == null || Course_Name == null || Course_Hours == null || Course_Min == null || Course_Day == null || Course_Place == null || Max_Students_Number == null)
             {
                 return Json(EDITED, JsonRequestBehavior.AllowGet);
             }
@@ -525,8 +519,8 @@ namespace Coursat.Controllers
                     new DB_CONNECTION().Database.ExecuteSqlCommand(
 
                         "UPDATE COURSEs SET Course_ID = " + int.Parse(Course_ID) + "," + "Course_Name = '" + Course_Name + "'" + ","
-                        + "Course_Hours = " + int.Parse(Course_Hours) + "," + "Course_Min = " + int.Parse(Course_Min) + "," 
-                        + "Course_Day = '" + Course_Day + "'" + "," + "Course_Place = '" + Course_Place + "'" + "," 
+                        + "Course_Hours = " + int.Parse(Course_Hours) + "," + "Course_Min = " + int.Parse(Course_Min) + ","
+                        + "Course_Day = '" + Course_Day + "'" + "," + "Course_Place = '" + Course_Place + "'" + ","
                         + "Max_Students_Number = " + int.Parse(Max_Students_Number) + " WHERE Course_ID = " + int.Parse(Course_ID)
 
                         );
@@ -537,7 +531,7 @@ namespace Coursat.Controllers
                 }
                 catch (Exception e)
                 {
-                    
+
                     return Json(EDITED, JsonRequestBehavior.AllowGet);
 
                 }
@@ -545,19 +539,71 @@ namespace Coursat.Controllers
 
 
         }
-        /*Kaboria
-        public JsonResult Search_Course()
-        {
 
-            return Json(JsonRequestBehavior.AllowGet);
-        }
-        public JsonResult Delete_Course()
+        public JsonResult Search_Course(int Course_ID)
         {
+            Object[] array = new Object[7];
+            try
+            {
+                int id = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_ID FROM Courses WHERE Course_ID = " + Course_ID  ).FirstOrDefault<int>();
+                if (Course_ID == id )
+                {
+                    string name = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Name FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<String>();
+                    int hours = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_Hours FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<int>();
+                    int min = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_Min FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<int>(); 
+                    string day = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Day FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<String>(); 
+                    string place = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Place FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<String>(); 
+                    int stdnum = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Max_Students_Number FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<int>();
+
+                    array[0] = id;
+                    array[1] = name;
+                    array[2] = hours;
+                    array[3] = min;
+                    array[4] = day;
+                    array[5] = place;
+                    array[6] = stdnum;
+                    return Json(array,JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(array, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            catch (Exception e)
+            {
+                return Json(array, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+        public JsonResult Delete_Course(int Course_ID)
+        {
+            bool deleted = false;
+            if (Course_ID != 0)
+            {
+                try
+                {
+                    new DB_CONNECTION().Database.ExecuteSqlCommand("Delete From Courses Where Course_ID =  " + Course_ID);
+                    deleted = true ;
+                    return Json(deleted , JsonRequestBehavior.AllowGet);
+                }
+                
+                catch (Exception e)
+                {
+                    return Json(deleted , JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(deleted , JsonRequestBehavior.AllowGet);
+            }
+
 
             return Json(JsonRequestBehavior.AllowGet);
         }
         
-        */
+        
 
         //Un essential functions that used for ajax checking//
         public JsonResult Check_ID(int Course_ID)
