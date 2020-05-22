@@ -259,7 +259,10 @@ D:\project\Coursat\Coursat\obj\Debug\Coursat.csproj.GenerateResource.cache
 D:\project\Coursat\Coursat\obj\Debug\Coursat.csproj.CopyComplete
 D:\project\Coursat\Coursat\obj\Debug\Coursat.dll
 D:\project\Coursat\Coursat\obj\Debug\Coursat.pdb
+<<<<<<< HEAD
 
+=======
+>>>>>>> b474287e11ada7196d3b9d68b90bc0d073296c5c
 C:\Users\user\Desktop\My_Projects\Coursat\Coursat\obj\Debug\Coursat.Migrations.ADD_COURSE_TABLE.resources
 =======
 C:\SW2PROJECT\Coursat\Coursat\obj\Debug\Coursat.csprojAssemblyReference.cache
@@ -339,4 +342,8 @@ C:\SW2PROJECT\Coursat\Coursat\bin\System.Web.Helpers.xml
 C:\SW2PROJECT\Coursat\Coursat\bin\System.Web.Mvc.xml
 C:\SW2PROJECT\Coursat\Coursat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\SW2PROJECT\Coursat\Coursat\obj\Debug\Coursat.csproj.CopyComplete
+<<<<<<< HEAD
 
+=======
+C:\sw2project\Coursat\Coursat\obj\Debug\Coursat.Migrations.ADD_COURSE_TABLE.resources
+>>>>>>> b474287e11ada7196d3b9d68b90bc0d073296c5c

@@ -539,6 +539,10 @@ namespace Coursat.Controllers
                                ("INSERT INTO USERS (Email , User_name , Password) VALUES ('" + user.Email + "'," + "'" + user.User_name + "'," + "'" + user.Password + "')");
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b474287e11ada7196d3b9d68b90bc0d073296c5c
                         Create_User_Table(user.User_name);
 
                         return View("SigningUp");
@@ -773,8 +777,11 @@ namespace Coursat.Controllers
             }
         }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b474287e11ada7196d3b9d68b90bc0d073296c5c
         public JsonResult Add_Course(String Course_ID, String Course_Name, String Course_Hours, String Course_Min, String Course_Day, String Course_Place, String Max_Students_Number)
         {
             bool ADDED = false;
@@ -846,6 +853,7 @@ namespace Coursat.Controllers
 
 
         }
+<<<<<<< HEAD
         /*
         public JsonResult Enroll_Course(int Course_ID, String User_Name) //Basem,omar
         {
@@ -857,9 +865,76 @@ namespace Coursat.Controllers
         public JsonResult Drop_Course(int Course_ID, String User_Name) //Basem,omar
         {
            
+=======
+
+        public JsonResult Search_Course(int Course_ID)
+        {
+            Object[] array = new Object[7];
+            try
+            {
+                int id = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_ID FROM Courses WHERE Course_ID = " + Course_ID  ).FirstOrDefault<int>();
+                if (Course_ID == id )
+                {
+                    string name = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Name FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<String>();
+                    int hours = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_Hours FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<int>();
+                    int min = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_Min FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<int>(); 
+                    string day = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Day FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<String>(); 
+                    string place = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Place FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<String>(); 
+                    int stdnum = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Max_Students_Number FROM Courses WHERE Course_ID = " + Course_ID).FirstOrDefault<int>();
+
+                    array[0] = id;
+                    array[1] = name;
+                    array[2] = hours;
+                    array[3] = min;
+                    array[4] = day;
+                    array[5] = place;
+                    array[6] = stdnum;
+                    return Json(array,JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(array, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            catch (Exception e)
+            {
+                return Json(array, JsonRequestBehavior.AllowGet);
+            }
+
 
         }
+        public JsonResult Delete_Course(int Course_ID)
+        {
+            bool deleted = false;
+            if (Course_ID != 0)
+            {
+                try
+                {
+                    new DB_CONNECTION().Database.ExecuteSqlCommand("Delete From Courses Where Course_ID =  " + Course_ID);
+                    deleted = true ;
+                    return Json(deleted , JsonRequestBehavior.AllowGet);
+                }
+                
+                catch (Exception e)
+                {
+                    return Json(deleted , JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(deleted , JsonRequestBehavior.AllowGet);
+            }
+
+>>>>>>> b474287e11ada7196d3b9d68b90bc0d073296c5c
+
+        }
+<<<<<<< HEAD
         */
+=======
+        
+        
+>>>>>>> b474287e11ada7196d3b9d68b90bc0d073296c5c
 
 
         //Un essential functions//
