@@ -1,4 +1,7 @@
-﻿<html>
+﻿@model Coursat.Models.COURSE
+@using Coursat.Models
+
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +31,7 @@
     <link rel="stylesheet" href="../assets/css/Simple-Slider.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/Team-Clean.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body style="background-color:rgb(255,255,255);">
@@ -36,105 +40,152 @@
             <a class="navbar-brand text-monospace" href="#" id="COURSAT" style="font-size:25px;font-family:Actor, sans-serif;color:#6495ed;">Coursat</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1" style="background-color:#ffffff;"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#" style="color:rgba(255,255,255,0.93);font-family:Actor, sans-serif;"><br></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="@Url.Action("User","Main")" style="color:rgba(213,213,213,0.83);">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="@Url.Action("MyCourses","Main")" style="color:rgba(213,213,213,0.83);">My Courses</a></li>
+
+                    <li class="nav-item" role="presentation"><button id="US" class="nav-link active" style="color:white;font-family:Actor, sans-serif;background-color:transparent ; border-color:transparent ">@ViewBag.USERNAME</button></li>
+                    @using (Html.BeginForm("User", "Main", FormMethod.Post))
+                    {
+                        @Html.TextBoxFor(TX_USERNAME => TX_USERNAME.Course_Name, new { id = "USERNAME_HOME", style = "display:none" })
+                        <li class="nav-item" role="presentation"><button class="nav-link" type="submit" style="color:rgba(213,213,213,0.83);cursor:pointer ;background-color:transparent ; border-color:transparent" id="HOME">Home</button></li>
+                    }
+                    @using (Html.BeginForm("MyCourses", "Main", FormMethod.Post))
+                    {
+                        @Html.TextBoxFor(TX_USERNAME => TX_USERNAME.Course_Name, new { id = "USERNAME_MYCOURSES", style = "display:none" })
+                        <li class="nav-item" role="presentation"><button class="nav-link" type="submit" style="color:rgba(213,213,213,0.83);cursor:pointer ;background-color:transparent ; border-color:transparent" id="MYCOURSES">My Courses</button></li>
+
+                    }
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(213,213,213,0.83);"></a></li>
-                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="BT_IN_USER" onclick="location.href='@Url.Action("Index","Main")'" style="margin:7px;">Logout</button>
+                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="HEADER_BT_LOGOUT" onclick="location.href='@Url.Action("Index","Main")'" style="margin-top:-13px;">Logout</button>
             </div>
         </div>
     </nav>
-    <div class="container" style="margin-left:62px;margin-top:109px;width:543px;">
-        <input class="form-control-sm" type="text" placeholder="Search Courses..." id="TX_IN_USER" style="width:335px;height:37px;">
-        <button class="btn btn-primary" type="button" data-bs-hover-animate="bounce" id="BT_IN_USER" style="width:123px;height:39px;margin-left:358px;margin-top:-37px;">Search</button>
-        <ul class="list-unstyled pulse animated" id="List_IN_USER" style="width:1370px;margin-top:67px;">
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-primary" id="BT_ENROLL" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Enroll Now</button>
+    <div class="container" style="margin-left:62px;margin-top:109px;width:543px">
+        @using (Html.BeginForm("Search_Course_User", "Main", FormMethod.Post , new { id="SEARCH_FORM" }))
+        {
+            @Html.TextBoxFor(TX_SEARCH => TX_SEARCH.Course_ID, new { placeholder = "Search Courses By ID...", type = "number", @class = "form-control-sm", id = "USERHOME_TX_SEARCH", style = "width:335px;height:37px;" })
+            @Html.TextBoxFor(TX_USERNAME => TX_USERNAME.Course_Name, new { id = "USERNAME_SEARCH", style = "display:none" })
+            <button class="btn btn-primary" type="submit" data-bs-hover-animate="bounce" id="USERHOME_BT_SEARCH" style="width:123px;height:39px;margin-left:358px;margin-top:-37px;" disabled>Search</button>
 
+        }
 
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-primary" id="BT_ENROLL" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Enroll Now</button>
+        @if (!ViewBag.Empty)
+        {
+            String BT_ID; int i = 0;
+            foreach (COURSE item in ViewBag.Courses)
+            {
+                BT_ID = "BT_ID" + i;
+                if (item.Course_ID == 0)
+                {
+                    <h3 style="color:gray">Course not  Found !</h3>
+                }
+                else
+                {
+                    <ul class="list-unstyled pulse animated" id="List_IN_USER" style="width:1370px;margin-top:67px;">
+                        <li class="Course_List" style="color:rgb(0,0,0);">
+                            <div>
+                                <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   @item.Course_Name </h5>
+                                <h6 class="course_disc"><bold>About This Course : </bold></h6>
+                                <div>
+                                    <ul class="course_show_list">
+                                        <li>ID : @item.Course_ID</li>
+                                        <li>Time : @item.Course_Hours : @item.Course_Min</li>
+                                        <li>Day : @item.Course_Day</li>
+                                        <li>Place : @item.Course_Place</li>
+                                        <li>Avaliable Places : @item.Max_Students_Number</li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-primary" id="@BT_ID" type="button"  style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;background-color:black">Enroll Now</button>
 
+                            </div>
 
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-primary" id="BT_ENROLL" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Enroll Now</button>
+                        </li>
 
+                    </ul>
+                    <script>
+                        $('#@BT_ID').click(function () {
 
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-primary" id="BT_ENROLL" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Enroll Now</button>
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("Enroll_Course","Main")',
+                                data: { Course_ID: @item.Course_ID, User_Name: $('#US').text() },
+                                datatype: "json",
+                                success: function (result) {
+                                    if (result) {
 
+                                        document.getElementById("@BT_ID").disabled = true;
 
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-primary" id="BT_ENROLL" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Enroll Now</button>
+                                        document.getElementById("@BT_ID").innerHTML = "Enrolled";
 
+                                        
+                                    }
+                                    else {
+                                        alert("You can't enroll more than 7 Courses !");
 
-                </div>
-            </li>
-        </ul>
+                                    }
+                    
+                                },
+                                error: function () {
+
+                                    alert("ERROR ! Please Try to refresh the page to Enroll !");
+                   
+                                }
+
+                            });
+                        });
+ 
+                    </script>
+                    i++;
+                }
+
+            }
+        }
+
+        else if (ViewBag.Empty)
+        {
+            <h3>No courses Avaliable !</h3>
+            <script>
+                $('#SEARCH_FORM').hide();
+            </script>
+        }
     </div>
+    <script>
+
+        $('#USERHOME_TX_SEARCH').change(
+            function () {
+                if (document.getElementById("USERHOME_TX_SEARCH").value.length == 0) {
+
+                    document.getElementById("USERHOME_BT_SEARCH").disabled = true;
+                }
+                else {
+
+                    document.getElementById("USERHOME_BT_SEARCH").disabled = false;
+                }
+
+            }
+        );
+
+        $('#MYCOURSES').click(
+            function () {
+                $('#USERNAME_MYCOURSES').val($('#US').text());
+
+            }
+        );
+
+        $('#HOME').click(
+            function () {
+                $('#USERNAME_HOME').val($('#US').text());
+
+            }
+        );
+
+        $('#USERHOME_BT_SEARCH').click(
+            function () {
+                $('#USERNAME_SEARCH').val($('#US').text());
+
+            }
+        );
+
+
+    </script>
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bs-animation.js"></script>

@@ -1,1 +1,75 @@
-﻿
+﻿@model Coursat.Models.USER
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursat</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abhaya+Libre">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo+Da">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    <link rel="stylesheet" href="../assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="../assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="../assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="../assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/Registration-Form-with-Photo-1.css">
+    <link rel="stylesheet" href="../assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="../assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/Team-Clean.css">
+</head>
+
+<body style="background-color:rgb(255,255,255);">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top" id="User_Nav" style="color:rgb(110,131,152);background-color:#000000;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-monospace" href="#" id="COURSAT" style="font-size:25px;font-family:Actor, sans-serif;color:#6495ed;">Coursat</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1" style="background-color:#ffffff;"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" style="color:white;font-family:Actor, sans-serif;">Welcome : @ViewBag.USERNAME</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="@Url.Action("User","Main")" style="color:rgba(213,213,213,0.83);">Home</a></li>
+                    @using (Html.BeginForm("MyCourses", "Main", FormMethod.Post))
+                    {
+                        @Html.TextBoxFor(TX_USERNAME => TX_USERNAME.User_name, new { style = "display:one", id = "USERNAME" })
+                        <li class="nav-item" role="presentation"><button class="nav-link" id="MYCOURSES" style="color:rgba(213,213,213,0.83); background-color:transparent ; border-color:transparent">My Courses</button></li>
+                    }
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(213,213,213,0.83);"></a></li>
+                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="HEADER_BT_LOGOUT" onclick="location.href='@Url.Action("Index","Main")'" style="margin:7px;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody();
+
+
+    <script>
+        $('#MYCOURSES').click(
+            function () {
+                $('#USERNAME').val(@ViewBag.USERNAME); 
+            }
+        );
+
+
+    </script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bs-animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="../assets/js/Simple-Slider.js"></script>
+
+
+</body>
+</html>
+
+

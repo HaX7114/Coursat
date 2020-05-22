@@ -53,7 +53,9 @@
         <p class="text-monospace" style="margin-left:206px;margin-top:-554px;width:320px;font-size:21px;color:#1e2833;line-height:47px;font-family:Cairo, sans-serif;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
         <a class="btn btn-primary" role="button" href="@Url.Action("AddCourse","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:-235px;background-color:#1e2833;">Add Course<img class="float-left" src="../assets/img/plus (1).png" style="width:26px;margin-right:-24px;"></a>
         <a class="btn btn-primary" role="button" href="@Url.Action("EditCourse","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:-189px;background-color:#1e2833;">Edit Course<img class="float-left" src="../assets/img/pencil.png" style="width:26px;margin-right:-31px;"></a>
-        <a class="btn btn-primary" role="button" href="@Url.Action("ShowCourses","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:-140px;background-color:rgb(30,40,51);">Show Courses<img class="float-left" src="../assets/img/menu.png" style="width:26px;margin-right:-7px;"></a>
+        <a class="btn btn-primary" role="button" href="@Url.Action("ShowCourses","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:-90px;background-color:rgb(30,40,51);">Show Courses<img class="float-left" src="../assets/img/menu.png" style="width:26px;margin-right:-7px;"></a>
+        <a class="btn btn-primary" role="button" href="@Url.Action("ShowUsers","Main")" id="Left-Buttons" style="width:185px;height:40px;margin-top:-140px;background-color:rgb(30,40,51);margin-left:-10px">Show Users<img class="float-left" src="../assets/img/people.png" style="width:26px;margin-right:-14px;margin-left:10px"></a>
+
     </div>
     <div class="container" style="margin-left:199px;margin-top:95px;width:543px;">
         @if (!ViewBag.Empty)
@@ -71,8 +73,7 @@
                                     <li>Time : @item.Course_Hours : @item.Course_Min</li>
                                     <li>Day : @item.Course_Day</li>
                                     <li>Place : @item.Course_Place</li>
-                                    <li>Max Students Number : @item.Max_Students_Number</li>
-
+                                    <li>Avaliable Places : @item.Max_Students_Number</li>
                                 </ul>
                             </div>
                         </div>
@@ -82,7 +83,7 @@
         }
         else
         {
-            <h1>You have not added any courses Yet !</h1>
+            <h1>You didn't add any courses Yet !</h1>
         }
 
     </div>

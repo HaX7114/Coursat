@@ -45,14 +45,14 @@
         </div>
     </nav>
     <div class="login-dark" style="background-size:cover;background-image:url(../assets/img/S1.jpg);">
-        @using (Html.BeginForm("user", "Main", FormMethod.Post, new { style = "background-color:rgba(0,0,0,0.83)", @id = "LOGIN_FORM" }))
+        @using (Html.BeginForm("user_login", "Main", FormMethod.Post, new { style = "background-color:rgba(0,0,0,0.83)", @id = "LOGIN_FORM" }))
         {
 
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
             <div class="form-group">@Html.TextBoxFor(TX_EMAIL => TX_EMAIL.Email, new { placeholder = "Email", @class = "form-control" })</div>
             <div class="form-group">@Html.PasswordFor(TX_PASS => TX_PASS.Password, new { placeholder = "Password", @class = "form-control" })</div>
-            <div class="form-group"><button class="btn btn-primary btn-block" onclick="location.href='@Url.Action("user","Main")'" type="submit" data-bs-hover-animate="pulse" id="BT_IN_LOGIN" style="background-color:#405fd1;">Log In</button></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" onclick="location.href='@Url.Action("user_login","Main")'" type="submit" data-bs-hover-animate="pulse" id="BT_IN_LOGIN" style="background-color:#405fd1;">Log In</button></div>
             <a href="@Url.Action("RetrievePassword","Main")" class="forgot">Forgot your Password?</a>
             <div class="lds-ellipsis" id="show" style="margin-left:80px ; display:none"><div></div><div></div><div></div><div></div></div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -93,7 +93,7 @@
                             <li><a href="#">Team</a></li>
                             <li><a href="#">Careers</a></li>
                         </ul>
-                    </div>
+                    </div>  
                     <div class="col-md-6 item text">
                         <h3 id="FOOTER" style="color:rgb(64,95,209);">Coursat</h3>
                         <p></p>

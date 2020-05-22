@@ -1,4 +1,7 @@
-﻿<html>
+﻿@model Coursat.Models.COURSE
+@using Coursat.Models
+
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +31,7 @@
     <link rel="stylesheet" href="../assets/css/Simple-Slider.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/Team-Clean.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -36,103 +40,99 @@
             <a class="navbar-brand text-monospace" href="#" id="COURSAT" style="font-size:25px;font-family:Actor, sans-serif;color:#6495ed;">Coursat</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1" style="background-color:#ffffff;"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#" style="color:rgba(255,255,255,0.93);font-family:Actor, sans-serif;"><br></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="@Url.Action("User","Main")" style="color:rgba(213,213,213,0.83);">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="@Url.Action("MyCourses","Main")" style="color:rgba(213,213,213,0.83);">My Courses</a></li>
+                    <li class="nav-item" role="presentation"><button id="US"class="nav-link active" style="color:white;font-family:Actor, sans-serif;background-color:transparent ; border-color:transparent">@ViewBag.USERNAMEE</button></li>
+                    @using (Html.BeginForm("User", "Main", FormMethod.Post))
+                    {
+                        @Html.TextBoxFor(TX_USERNAME => TX_USERNAME.Course_Name, new { id = "USERNAME" ,style="display:none" })
+                        <li class="nav-item" role="presentation"><button class="nav-link" style="color:rgba(213,213,213,0.83); background-color:transparent ; border-color:transparent;cursor:pointer" type="submit" id="HOME">Home</button></li>
+                    }
+                    <li class="nav-item" role="presentation"><button class="nav-link"  style="color:rgba(213,213,213,0.83); background-color:transparent ; border-color:transparent">My Courses</button></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:rgba(213,213,213,0.83);"></a></li>
-                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="BT_IN_USER" onclick="location.href='@Url.Action("Index","Main")'" style="margin:7px;">Logout</button>
+                </ul><button class="btn btn-primary" type="button" data-bs-hover-animate="pulse" id="HEADER_BT_LOGOUT" onclick="location.href='@Url.Action("Index","Main")'" style="margin-top:-13px;">Logout</button>
             </div>
         </div>
     </nav>
     <div class="container" style="margin-left:62px;margin-top:109px;width:543px;">
-         <ul class="list-unstyled pulse animated" id="List_IN_USER" style="width:1370px;margin-top:67px;">
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-primary" id="BT_DROP" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Drop Course</button>
+        @if (!ViewBag.EmptyEnrolled)
+        {
+            String BT_ID; int i = 0;
+            foreach (COURSE item in ViewBag.UserCourses)
+            {
+                BT_ID = "BT_ID" + i;
+                
+                    <ul class="list-unstyled pulse animated" id="List_IN_USER" style="width:1370px;margin-top:67px;">
+                        <li class="Course_List" style="color:rgb(0,0,0);">
+                            <div>
+                                <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   @item.Course_Name </h5>
+                                <h6 class="course_disc"><bold>About This Course : </bold></h6>
+                                <div>
+                                    <ul class="course_show_list">
+                                        <li>ID : @item.Course_ID</li>
+                                        <li>Time : @item.Course_Hours : @item.Course_Min</li>
+                                        <li>Day : @item.Course_Day</li>
+                                        <li>Place : @item.Course_Place</li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-primary" id="@BT_ID" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;background-color:black">Drop Course</button>
 
+                            </div>
+                        </li>
+                    </ul>
+                    <script>
+                        $('#@BT_ID').click(function () {
 
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-primary" id="BT_DROP" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Drop Course</button>
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("Drop_Course","Main")',
+                                data: { Course_ID: @item.Course_ID, User_Name: $('#US').text() },
+                                datatype: "json",
+                                success: function (res) {
+                                   
+                                    if (res) {
 
+                                        document.getElementById("@BT_ID").disabled = true;
 
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-primary" id="BT_DROP" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Drop Course</button>
+                                        document.getElementById("@BT_ID").innerHTML = "Dropped";
+                                    }
+                                    else {
 
+                                        alert("ERROR ! Please Try to refresh the page to Drop !");
 
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-primary" id="BT_DROP" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Drop Course</button>
+                                    }
 
+                                },
+                                error: function () {
 
-                </div>
-            </li>
-            <li class="Course_List" style="color:rgb(0,0,0);">
-                <div>
-                    <h5 class="course_name"><img src="../assets/img/online-education.png" class="course_img">   Graphic Design </h5>
-                    <h6 class="course_disc"><bold>About This Course : </bold></h6>
-                    <div>
-                        <ul class="course_show_list">
-                            <li>ID :</li>
-                            <li>Time :</li>
-                            <li>Day :</li>
-                            <li>Place :</li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-primary" id="BT_DROP" type="button" style="width:123px;height:39px;margin-left:1200px;margin-top:-65px;">Drop Course</button>
+                                    alert("ERROR ! Please Try to refresh the page to Drop !");
 
+                                }
 
-                </div>
-            </li>
-        </ul>
+                            });
+                        });
+
+                    </script>
+                    i++;
+                }
+
+            
+        }
+
+        else if (ViewBag.EmptyEnrolled)
+        {
+            <h3>You didn't enrolled in any Course !</h3>
+            
+        }
     </div>
+
+
+    <script>
+        $('#HOME').click(
+            function () {
+                $('#USERNAME').val($('#US').text());
+                
+            }
+        );
+    </script>
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bs-animation.js"></script>

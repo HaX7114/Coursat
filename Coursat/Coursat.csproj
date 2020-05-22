@@ -209,6 +209,7 @@
     <Content Include="Views\Main\EditCourse.cshtml" />
     <Content Include="Views\Main\ShowCourses.cshtml" />
     <Content Include="Views\Main\RetrievePassword.cshtml" />
+    <Content Include="Views\Main\ShowUsers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
