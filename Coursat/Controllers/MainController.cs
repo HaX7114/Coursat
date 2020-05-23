@@ -538,11 +538,6 @@ namespace Coursat.Controllers
                         new DB_CONNECTION().Database.ExecuteSqlCommand
                                ("INSERT INTO USERS (Email , User_name , Password) VALUES ('" + user.Email + "'," + "'" + user.User_name + "'," + "'" + user.Password + "')");
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> b474287e11ada7196d3b9d68b90bc0d073296c5c
                         Create_User_Table(user.User_name);
 
                         return View("SigningUp");
@@ -776,12 +771,6 @@ namespace Coursat.Controllers
                 return View("User");
             }
         }
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> b474287e11ada7196d3b9d68b90bc0d073296c5c
         public JsonResult Add_Course(String Course_ID, String Course_Name, String Course_Hours, String Course_Min, String Course_Day, String Course_Place, String Max_Students_Number)
         {
             bool ADDED = false;
@@ -853,20 +842,67 @@ namespace Coursat.Controllers
 
 
         }
-<<<<<<< HEAD
-        /*
-        public JsonResult Enroll_Course(int Course_ID, String User_Name) //Basem,omar
+
+        
+        public JsonResult Enroll_Course(int Course_ID, String User_Name) 
         {
             
+            bool IS_ENROLLED;
 
+            try
+            {
+                int Enrolled_Courses = new DB_CONNECTION().Database.SqlQuery<int>("SELECT COUNT(Course_ID) FROM " + User_Name).FirstOrDefault<int>();
+
+                if (Enrolled_Courses == 7)
+                {
+                    IS_ENROLLED = false;
+
+                    return Json(IS_ENROLLED, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    new DB_CONNECTION().Database.ExecuteSqlCommand("INSERT INTO " + User_Name + "(COURSE_ID) VALUES(" + Course_ID + ")");
+
+                    new DB_CONNECTION().Database.ExecuteSqlCommand("UPDATE COURSEs SET Max_Students_Number = Max_Students_Number - 1 WHERE Course_ID = " + Course_ID);
+
+                    IS_ENROLLED = true;
+
+                    return Json(IS_ENROLLED,JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch
+            {
+                IS_ENROLLED = false;
+
+                return Json(IS_ENROLLED, JsonRequestBehavior.AllowGet);
+
+            }
             
         }
         
-        public JsonResult Drop_Course(int Course_ID, String User_Name) //Basem,omar
+        public JsonResult Drop_Course(int Course_ID, String User_Name) 
         {
-           
-=======
+            bool DROPPED = false;
 
+            try
+            {
+                new DB_CONNECTION().Database.ExecuteSqlCommand("DELETE FROM " + User_Name + " WHERE Course_ID =" + Course_ID);
+
+                new DB_CONNECTION().Database.ExecuteSqlCommand("UPDATE COURSEs SET Max_Students_Number = Max_Students_Number + 1 WHERE Course_ID = " + Course_ID);
+
+                DROPPED = true;
+
+                return Json(DROPPED,JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                
+
+                return Json(DROPPED,JsonRequestBehavior.AllowGet);
+            }
+        }
+        
         public JsonResult Search_Course(int Course_ID)
         {
             Object[] array = new Object[7];
@@ -912,30 +948,21 @@ namespace Coursat.Controllers
                 try
                 {
                     new DB_CONNECTION().Database.ExecuteSqlCommand("Delete From Courses Where Course_ID =  " + Course_ID);
-                    deleted = true ;
-                    return Json(deleted , JsonRequestBehavior.AllowGet);
+                    deleted = true;
+                    return Json(deleted, JsonRequestBehavior.AllowGet);
                 }
-                
+
                 catch (Exception e)
                 {
-                    return Json(deleted , JsonRequestBehavior.AllowGet);
+                    return Json(deleted, JsonRequestBehavior.AllowGet);
                 }
             }
             else
             {
-                return Json(deleted , JsonRequestBehavior.AllowGet);
+                return Json(deleted, JsonRequestBehavior.AllowGet);
             }
 
->>>>>>> b474287e11ada7196d3b9d68b90bc0d073296c5c
-
         }
-<<<<<<< HEAD
-        */
-=======
-        
-        
->>>>>>> b474287e11ada7196d3b9d68b90bc0d073296c5c
-
 
         //Un essential functions//
         public JsonResult Check_ID(int Course_ID)
