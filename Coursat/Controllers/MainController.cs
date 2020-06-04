@@ -141,12 +141,90 @@ namespace Coursat.Controllers
             System.Threading.Thread.Sleep(2000);
             return View();
         }
-        /*
-        public ActionResult MyCourses(COURSE user) //Dodger
+        
+        public ActionResult MyCourses(COURSE user) 
         {
-            
+            ViewBag.USERNAMEE = user.Course_Name;
+
+            int i;
+            String COURSE_NAME = null;
+            String COURSE_PLACE = null;
+            String COURSE_DAY = null;
+            int COURSE_HOUR = 0;
+            int COURSE_MIN = 0;
+            int COURSE_ID = 0;
+
+            try
+            {
+
+
+                int n = new DB_CONNECTION().Database.SqlQuery<int>("SELECT COUNT(Course_ID) FROM " + user.Course_Name).FirstOrDefault<int>();
+
+                if (n != 0)
+                {
+                    int[] ID = new int[n];
+
+                    new DB_CONNECTION().Database.ExecuteSqlCommand("INSERT INTO TEMP(ID)(SELECT Course_ID FROM " + user.Course_Name + ")");
+
+                    for (i = 0; i < n; i++)
+                    {
+                        ID[i] = new DB_CONNECTION().Database.SqlQuery<int>("SELECT TOP 1 ID FROM TEMP").FirstOrDefault<int>();
+
+                        new DB_CONNECTION().Database.ExecuteSqlCommand("DELETE TOP (1) FROM TEMP");
+
+                    }
+
+                    List<COURSE> COURSE_LIST = new List<COURSE>();
+
+                    for (i = 0; i < n; i++)
+                    {
+                        COURSE_ID = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_ID FROM COURSEs WHERE Course_ID = " + ID[i]).FirstOrDefault<int>();
+                        COURSE_NAME = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Name FROM COURSEs WHERE Course_ID = " + ID[i]).FirstOrDefault<String>();
+                        COURSE_HOUR = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_Hours FROM COURSEs WHERE Course_ID = " + ID[i]).FirstOrDefault<int>();
+                        COURSE_MIN = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_Min FROM COURSEs WHERE Course_ID = " + ID[i]).FirstOrDefault<int>();
+                        COURSE_DAY = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Day FROM COURSEs WHERE Course_ID = " + ID[i]).FirstOrDefault<String>();
+                        COURSE_PLACE = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Place FROM COURSEs WHERE Course_ID = " + ID[i]).FirstOrDefault<String>();
+
+
+                        COURSE_LIST.Add(new COURSE
+                        {
+                            Course_ID = COURSE_ID,
+                            Course_Name = COURSE_NAME,
+                            Course_Hours = COURSE_HOUR,
+                            Course_Min = COURSE_MIN,
+                            Course_Day = COURSE_DAY,
+                            Course_Place = COURSE_PLACE
+
+                        });
+
+
+
+                    }
+
+                    ViewBag.EmptyEnrolled = false;
+
+                    ViewBag.UserCourses = COURSE_LIST;
+
+                    return View();
+                }
+                else
+                {
+                    ViewBag.EmptyEnrolled = true;
+
+                    return View();
+
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.EmptyEnrolled = true;
+
+                return View();
+            }
         }
-        */
+        
         public ActionResult AddAdmin()
         {
             return View();
@@ -496,6 +574,7 @@ namespace Coursat.Controllers
         [HttpPost]
         public ActionResult FinishingUp(USER user)
         {
+            ViewBag.ERROR = false;
 
             try
             {
@@ -534,13 +613,22 @@ namespace Coursat.Controllers
                     }
                     else
                     {
-                        System.Threading.Thread.Sleep(2000);
-                        new DB_CONNECTION().Database.ExecuteSqlCommand
-                               ("INSERT INTO USERS (Email , User_name , Password) VALUES ('" + user.Email + "'," + "'" + user.User_name + "'," + "'" + user.Password + "')");
+                        try
+                        {
+                            Create_User_Table(user.User_name);
 
-                        Create_User_Table(user.User_name);
+                            new DB_CONNECTION().Database.ExecuteSqlCommand
+                                   ("INSERT INTO USERS (Email , User_name , Password) VALUES ('" + user.Email + "'," + "'" + user.User_name + "'," + "'" + user.Password + "')");
 
-                        return View("SigningUp");
+                            return View("SigningUp");
+                        }
+                        catch
+                        {
+                            ViewBag.ERROR = true;
+
+                            return View("SignUp");
+                        }
+                        
                     }
 
 
@@ -553,15 +641,10 @@ namespace Coursat.Controllers
             }
             catch (Exception e)
             {
-                System.Threading.Thread.Sleep(2000);
-                new DB_CONNECTION().Database.ExecuteSqlCommand
-                           ("INSERT INTO USERS (Email , User_name , Password) VALUES ('" + user.Email + "'," + "'" + user.User_name + "'," + "'" + user.Password + "')");
 
+                ViewBag.ERROR = true;
 
-
-                Create_User_Table(user.User_name);
-
-                return View("SigningUp");
+                return View("SignUp");
             }
 
         }
@@ -702,9 +785,7 @@ namespace Coursat.Controllers
             {
                 int ID = 0;
                 int ID2 = 0;
-
                 ID = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_ID FROM COURSEs WHERE Course_ID = " + Course.Course_ID + "AND Course_ID NOT IN (SELECT COURSE_ID FROM " + Course.Course_Name + ")").FirstOrDefault<int>();
-
                 String USERNAME = new DB_CONNECTION().Database.SqlQuery<String>("SELECT User_name FROM USERs WHERE User_name = '" + Course.Course_Name + "'").FirstOrDefault<String>();
 
                 if (ID != 0)
@@ -713,16 +794,20 @@ namespace Coursat.Controllers
 
                     if (ID2 != 0)
                     {
-
-                        int COURSE_ID = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_ID FROM COURSEs WHERE Course_ID = " + Course.Course_ID).FirstOrDefault<int>();
-                        String COURSE_NAME = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Name FROM COURSEs WHERE Course_ID = " + Course.Course_ID).FirstOrDefault<String>();
-                        int COURSE_HOUR = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_Hours FROM COURSEs WHERE Course_ID = " + Course.Course_ID).FirstOrDefault<int>();
                         int COURSE_MIN = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_Min FROM COURSEs WHERE Course_ID = " + Course.Course_ID).FirstOrDefault<int>();
+                        
                         String COURSE_DAY = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Day FROM COURSEs WHERE Course_ID = " + Course.Course_ID).FirstOrDefault<String>();
+                        
                         String COURSE_PLACE = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Place FROM COURSEs WHERE Course_ID = " + Course.Course_ID).FirstOrDefault<String>();
+                        
                         int MAX_STD_NUM = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Max_Students_Number FROM COURSEs WHERE Course_ID = " + Course.Course_ID).FirstOrDefault<int>();
-
-
+                        
+                        int COURSE_ID = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_ID FROM COURSEs WHERE Course_ID = " + Course.Course_ID).FirstOrDefault<int>();
+                        
+                        String COURSE_NAME = new DB_CONNECTION().Database.SqlQuery<String>("SELECT Course_Name FROM COURSEs WHERE Course_ID = " + Course.Course_ID).FirstOrDefault<String>();
+                        
+                        int COURSE_HOUR = new DB_CONNECTION().Database.SqlQuery<int>("SELECT Course_Hours FROM COURSEs WHERE Course_ID = " + Course.Course_ID).FirstOrDefault<int>();
+                        
                         ViewBag.USERNAME = USERNAME;
 
                         List<COURSE> COURSE_LIST = new List<COURSE>();
